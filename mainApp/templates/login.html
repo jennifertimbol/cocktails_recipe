@@ -11,6 +11,13 @@
     <div class="login">
         <div class="form-group col-xs-3">
             <h5>Sign in</h5>
+            {% if messages %}
+            <ul>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
             <form action="/signedin" method="POST">
                 {% csrf_token %}
                 <div class="mb-13">

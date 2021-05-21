@@ -1,70 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'homepage.css' %}">
     <title>Homepage</title>
 </head>
+
 <body>
-    <header class="header">        
-        <h1>Welcome to our homepage</h1><br>
-        <div class="navbar">
-            <a href='/login'><button type="submit" value="Add">Login</button></a> | <a href='/register'><button type="submit" value="Add">Register</button></a>
-        </div>
-    </header><br>
-    <div class="wrapper">
-        <div class="sidebar">
-            <ul style="text-decoration: none;"> 
-                <li><a href="/homepage" style="color: black;" >Home</a></li>
-                <li><a href="/profile" style="color: black;">Profile</a></li>
-                <li><a href="/about" style="color: black;">About</a></li>
-                <li><a href="/contact" style="color: black;">Contact</a></li>
-            </ul>
-        </div>
-        <div class="cocktail_list">
-            <div class="cocktail">
-                <div class="cocktail_image">
-                    <h3>cocktail image</h3>
+    <div class="container">
+        <header class="header">
+            <div class="navbar">
+                {% if request.session.curr_user %}
+                <a href="/logout">Logout</a>
+                {% else %}
+                <a href='/login'><button type="submit" value="Add">Login</button></a> | <a href='/register'><button
+                        type="submit" value="Add">Register</button></a>
+                {% endif %}
+            </div>
+        </header><br>
+        <div class="wrapper">
+            <div class="sidebar">
+                <ul style="text-decoration: none;">
+                    <li><a href="/" style="color: black;">Home</a></li>
+                    <li><a href="/profile" style="color: black;">Profile</a></li>
+                    <li><a href="/about" style="color: black;">About</a></li>
+                    <li><a href="/contact" style="color: black;">Contact</a></li>
+                </ul>
+            </div>
+            <main class="cocktail_list">
+                <div class="header">
+                <h1>Cocktail Recipes</h1>
                 </div>
-                <button>cocktail name</button>
-            </div>
-            <div class="cocktail">
-                <div class="cocktail_image">
-                    <h3>cocktail image</h3>
+                <div class="cocktail">
+                    <div class="cocktail_image">
+                        <h3>cocktail image</h3>
+                    </div>
+                    <button>cocktail name</button>
                 </div>
-                <button>cocktail name</button>
-            </div>
-            <div class="cocktail">
-                <div class="cocktail_image">
-                    <h3>cocktail image</h3>
+                <div class="cocktail">
+                    <div class="cocktail_image">
+                        <h3>cocktail image</h3>
+                    </div>
+                    <button>cocktail name</button>
                 </div>
-                <button>cocktail name</button>
-            </div>
-            <div class="cocktail">
-                <div class="cocktail_image">
-                    <h3>cocktail image</h3>
+                <div class="cocktail">
+                    <div class="cocktail_image">
+                        <h3>cocktail image</h3>
+                    </div>
+                    <button>cocktail name</button>
                 </div>
-                <button>cocktail name</button>
-            </div>
-            <div class="cocktail">
-                <div class="cocktail_image">
-                    <h3>cocktail image</h3>
+                <div class="cocktail">
+                    <div class="cocktail_image">
+                        <h3>cocktail image</h3>
+                    </div>
+                    <button>cocktail name</button>
                 </div>
-                <button>cocktail name</button>
-            </div>
-            <div class="cocktail">
-                <div class="cocktail_image">
-                    <h3>cocktail image</h3>
+                <div class="cocktail">
+                    <div class="cocktail_image">
+                        <h3>cocktail image</h3>
+                    </div>
+                    <button>cocktail name</button>
                 </div>
-                <button>cocktail name</button>
+                <div class="cocktail">
+                    <div class="cocktail_image">
+                        <h3>cocktail image</h3>
+                    </div>
+                    <button>cocktail name</button>
+                </div>
             </div>
-        </div>
-        <div class="searchbar">
-            <div>
-                <h3>Search cocktails</h3>
-            </div>
+            <!-- <div class="searchbar">
+                <div>
+                    <h3>Search cocktails</h3>
+                </div>
+            </div> -->
         </div>
     </div>
     <footer class="footer">
@@ -73,4 +84,5 @@
         </div>
     </footer>
 </body>
+
 </html>

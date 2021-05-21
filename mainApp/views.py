@@ -5,6 +5,9 @@ import bcrypt
 from .forms import recipeForm
 
 def homepage(request):
+    context = {
+        'curr_user': User.objects.get(id=request.session['curr_user'])
+    }
     return render(request, 'homepage.html')
 
 def register(request):
@@ -35,10 +38,8 @@ def login(request):
 def signedin(request):
     if request.method == "POST":
         user = User.objects.filter(email = request.POST['email'])
-
         if user:
             log_user = user[0]
-
             if bcrypt.checkpw(request.POST['password'].encode(), log_user.password.encode()):
                 request.session['curr_user'] = log_user.id
                 return redirect('/profile')
