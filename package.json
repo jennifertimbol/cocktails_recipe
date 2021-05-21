@@ -1,0 +1,23 @@
+{
+  "name": "cocktails_recipe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build-css": "tailwindcss build scr/styles.css -o static/css/home.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jennifertimbol/cocktails_recipe.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jennifertimbol/cocktails_recipe/issues"
+  },
+  "homepage": "https://github.com/jennifertimbol/cocktails_recipe#readme",
+  "dependencies": {
+    "tailwindcss": "^2.1.2"
+  }
+}
