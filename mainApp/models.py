@@ -25,6 +25,12 @@ class UserManager(models.Manager):
             errors['pw_match'] = "Password must match!"
         
         return errors
+# class recipeManager(models.Manager):
+#     def recipe_validator(self,postData):
+#         errors = {}
+
+#         if len(postData['cocktail_name']) < 5:
+#             errors["cocktail_name"] = 'Name of your cocktail must be atleast5 characters long'
 
 class User(models.Model):
     first_name = models.CharField(max_length=55)
@@ -43,7 +49,8 @@ CATEGORY_CHOICES = (
     ('rum', 'Rum'),
     ('bourbon', 'Bourbon'),
     ('cognac', 'Cognac'),
-    ('wine', 'Wine'),
+    ('white wine', 'White Wine'),
+    ('red wine', 'Red Wine'),
     ('champagne', 'Champagne'),
     ('beer', 'Beer'),
 )
@@ -59,5 +66,6 @@ class Recipe(models.Model):
     posted_by = models.ForeignKey(User, related_name="drinks", on_delete=models.CASCADE)
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
+    # objects = recipeManager()
 
 # Create your models here.

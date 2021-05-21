@@ -58,12 +58,25 @@ def userprofile(request):
 def addcocktail(request):
     context = {
         'user': User.objects.get(id=request.session['curr_user']),
+        'recipeForm':recipeForm()
     }
     return render(request, "addcocktailform.html", context)
 
 def uploadrecipe(request):
-    
-    return redirect('/profile')
+    if request.method == 'POST':
+        posted_by = User.objects.get(id=request.session['curr_user'])
+        postedRecipeForm = recipeForm(request.POST, request.FILES)
+        if postedRecipeForm.is_valid():
+            form = postedRecipeForm.save()
+            form.posted_by_id = posted_by.id
+            form.save()
+            return redirect('/profile')
+    else:
+        context = {
+            'user':User.objects.get(id=request.session['curr_user']),
+            'recipeForm':postedRecipeForm,
+        }
+        return render(request, "addcocktailform.html", context)
 
 def logout(request):
     request.session.flush()
