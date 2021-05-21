@@ -59,7 +59,7 @@ class Recipe(models.Model):
     cocktail_name = models.CharField(max_length=70)
     ingredients = models.TextField()
     image = models.ImageField()
-    category = models.CharField(max_length=6, choices=CATEGORY_CHOICES, default="tequila")
+    category = models.CharField(max_length=15, choices=CATEGORY_CHOICES, default="tequila")
     duration = models.IntegerField()
     description = models.TextField()
     instruction = models.TextField()

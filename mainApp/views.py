@@ -8,7 +8,7 @@ def homepage(request):
     context = {
         'curr_user': User.objects.get(id=request.session['curr_user'])
     }
-    return render(request, 'homepage.html')
+    return render(request, 'homepage.html', context)
 
 def register(request):
     return render(request, 'register.html')
