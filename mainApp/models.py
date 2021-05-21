@@ -8,8 +8,10 @@ class UserManager(models.Manager):
     def reg_validator(self, postData):
         errors = {}
 
-        if len(postData['name']) < 5:
-            errors["name"] = "Name should be atleast 5 characters long"      
+        if len(postData['first_name']) < 2:
+            errors["first_name"] = "Name should be atleast 2 characters long" 
+        if len(postData['last_name'])  < 1:
+            errors["last_name"] = "You must enter a last name"   
         if len(postData['email']) == 0:
             errors["email"] = "You must enter an email"
         elif not email_regex.match(postData['email']):
@@ -25,7 +27,8 @@ class UserManager(models.Manager):
         return errors
 
 class User(models.Model):
-    name = models.CharField(max_length=55)
+    first_name = models.CharField(max_length=55)
+    last_name = models.CharField(max_length=55)
     email = models.CharField(max_length=55)
     password = models.CharField(max_length=45)
     created_at = models.DateField(auto_now_add=True)
