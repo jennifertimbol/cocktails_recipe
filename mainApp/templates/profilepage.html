@@ -37,19 +37,18 @@
                 <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
             </ul>
         </nav>
-        <div class="row">
-            <div class="col-sm-6">
-                <h2>Hello {{user.first_name}} {{user.last_name}}</h2>
-                <p>Most popular Recipes</p>
-                <p>{{drink_name}}</p>
-                <p>{{drink_image}}</p>
-                <p>{{drink_instruction}}</p>
+        <h1>{{user.first_name}}</h1>
+        <main>
+            <h4>Your recipes</h4>
+            <div>
+                {% for cocktail in all_cocktails%}
+                <img src="{{cocktail.image.url" alt="Cocktail Image">
+                <h4>{{cocktail.cocktail_name}}</h4>
+                <a href="/deletecocktail/{{cocktail.id}}">Delete</a>
+                {% endfor %}
             </div>
-            <div class="col-sm-6">
-                <h3>Your favorite Recipes</h3>
-                <p>{{Favorited recipe goes here}}</p>
-            </div>
-        </div>
+
+        </main>
 
         <a href="/addcocktail"><button type="button" class="btn btn-primary">Share your cocktail recipe</button></a>
     </div>

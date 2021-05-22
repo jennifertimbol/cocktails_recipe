@@ -55,8 +55,10 @@ def userprofile(request):
     if 'curr_user' not in request.session:
         return redirect('/')
     user = User.objects.get(id=request.session['curr_user'])
+    all_cocktails = Recipe.objects.filter(posted_by_id=user.id)
     context = {
-        'user':user
+        'user':user,
+        'all_cocktails':all_cocktails
     }
     return render(request, "profilepage.html", context)
 
