@@ -53,7 +53,7 @@ def userprofile(request):
     context= {
         'user': user
     }
-    return render(request, "profilepage.html")
+    return render(request, "profilepage.html", context)
 
 def addcocktail(request):
     context = {
