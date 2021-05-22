@@ -10,6 +10,8 @@ urlpatterns = [
     path('profile', views.userprofile),
     path('addcocktail', views.addcocktail),
     path('uploadrecipe', views.uploadrecipe),
+    path('cocktailrecipe/<int:recipe_id>', views.cocktailprofile),
+    path('deletecocktail', views.deletecocktail),
     path('logout', views.logout),
     path('generate_api_recipe', views.generate_api_recipe)
 ]

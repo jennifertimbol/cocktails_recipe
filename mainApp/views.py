@@ -4,8 +4,15 @@ from .models import *
 import bcrypt
 from .forms import recipeForm
 import requests
+import json
 
 def homepage(request):
+    response = requests.get('https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a')
+    context= {
+        'drink_name': response.Drink.json(),
+        'drink_image':response.DrinkThumb.json(),
+        'drink_instruction': response.  Instructions.json()
+    }
     return render(request, 'homepage.html')
 
 def register(request):
@@ -48,12 +55,8 @@ def userprofile(request):
     if 'curr_user' not in request.session:
         return redirect('/')
     user = User.objects.get(id=request.session['curr_user'])
-    response = requests.get('https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a')
-    context= {
-        'user': user
-        'drink_name' = response.Drink.json()
-        'drink_image' = response.DrinkThumb.json()
-        'drink_instruction' = response.Instructions.json()
+    context = {
+        'user':user
     }
     return render(request, "profilepage.html", context)
 
@@ -72,7 +75,7 @@ def uploadrecipe(request):
             form = postedRecipeForm.save(commit=False)
             form.posted_by_id = posted_by.id
             form.save()
-            return redirect('/profile')
+            return redirect(f'/cocktailrecipe/{form.id}')
     else:
         context = {
             'user':User.objects.get(id=request.session['curr_user']),
@@ -80,7 +83,25 @@ def uploadrecipe(request):
         }
         return render(request, "addcocktailform.html", context)
     return redirect('/profile')
-    
+
+def cocktailprofile(request, recipe_id):
+    user = User.objects.get(id=request.session['curr_user'])
+    cocktail = Recipe.objects.get(id=recipe_id)
+
+    context= {
+        'user':user,
+        'cocktail':cocktail
+    }
+    return render(request, "cocktailrecipe.html", context)
+
+def deletecocktail(request, recipe_id):
+    if 'curr_user' not in request.session:
+        return redirect('/')
+
+    delete_recipe = Recipe.objects.get(id=recipe_id)
+    delete_recipe.delete()
+    return redirect('/profile')
+
 def logout(request):
     request.session.flush()
     return redirect('/')
@@ -88,9 +109,9 @@ def logout(request):
 def generate_api_recipe(request):
     response = requests.get('https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a')
     context = {
-        'drink_name' = response.Drink.json()
-        'drink_image' = response.DrinkThumb.json()
-        'drink_instruction' = response.Instructions.json()
+        'drink_name': response.Drink.json(),
+        'drink_image': response.DrinkThumb.json(),
+        'drink_instruction': response.Instructions.json()
     }
     return render(request, 'homepage.html', context)
 
