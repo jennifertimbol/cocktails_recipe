@@ -3,6 +3,7 @@ from django.contrib import messages
 from .models import *
 import bcrypt
 from .forms import recipeForm
+import requests
 
 def homepage(request):
     return render(request, 'homepage.html')
@@ -47,10 +48,14 @@ def userprofile(request):
     if 'curr_user' not in request.session:
         return redirect('/')
     user = User.objects.get(id=request.session['curr_user'])
+    response = requests.get('https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a')
     context= {
         'user': user
+        'drink_name' = response.Drink.json()
+        'drink_image' = response.DrinkThumb.json()
+        'drink_instruction' = response.Instructions.json()
     }
-    return render(request, "profilepage.html")
+    return render(request, "profilepage.html", context)
 
 def addcocktail(request):
     context = {
@@ -79,4 +84,13 @@ def uploadrecipe(request):
 def logout(request):
     request.session.flush()
     return redirect('/')
+
+def generate_api_recipe(request):
+    response = requests.get('https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a')
+    context = {
+        'drink_name' = response.Drink.json()
+        'drink_image' = response.DrinkThumb.json()
+        'drink_instruction' = response.Instructions.json()
+    }
+    return render(request, 'homepage.html', context)
 
