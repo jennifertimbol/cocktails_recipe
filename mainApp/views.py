@@ -67,7 +67,7 @@ def uploadrecipe(request):
         posted_by = User.objects.get(id=request.session['curr_user'])
         postedRecipeForm = recipeForm(request.POST, request.FILES)
         if postedRecipeForm.is_valid():
-            form = postedRecipeForm.save()
+            form = postedRecipeForm.save(commit=False)
             form.posted_by_id = posted_by.id
             form.save()
             return redirect('/profile')
@@ -77,7 +77,8 @@ def uploadrecipe(request):
             'recipeForm':postedRecipeForm,
         }
         return render(request, "addcocktailform.html", context)
-
+    return redirect('/profile')
+    
 def logout(request):
     request.session.flush()
     return redirect('/')
