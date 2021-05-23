@@ -8,11 +8,12 @@ import json
 
 def homepage(request):
     response = requests.get('https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a')
-    context= {
-        'drink_name': response.Drink.json(),
-        'drink_image':response.DrinkThumb.json(),
-        'drink_instruction': response.  Instructions.json()
-    }
+# This is making my server crash. Just commented it out for now. -JOSH
+    # context= {
+    #     'drink_name': response.Drink.json(),
+    #     'drink_image':response.DrinkThumb.json(),
+    #     'drink_instruction': response.Instructions.json(),
+    # }
     return render(request, 'homepage.html')
 
 def register(request):

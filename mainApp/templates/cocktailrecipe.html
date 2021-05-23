@@ -7,8 +7,7 @@
 </head>
 <body>
     <h1>This page will render after user uploads a recipe</h1>
-
-    <main>
+    <div class="container">
         <img src="{{cocktail.image.url}}" alt="Cocktail Image">
         <h3>{{cocktail.cocktail_name}}</h3>
         <p>Uploaded by: {{user.first_name}}</p>
@@ -17,6 +16,7 @@
         <p>{{cocktail.duration}}</p>
         <p>{{cocktail.description}}</p>
         <p>{{cocktail.instruction}}</p>
-    </main>
+    </div>
+    <a href="/">Home</a>
 </body>
 </html>

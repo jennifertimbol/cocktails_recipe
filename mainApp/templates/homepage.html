@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <!-- Latest compiled and minified CSS -->
+    <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
     <!-- jQuery library -->
@@ -22,31 +22,64 @@
 
 <body>
     <div class="container">
-        <header class="header">
-            <div class="navbar">
+        <div class="top">
+            <div class="col">
                 {% if request.session.curr_user %}
-                <a href="/logout">Logout</a>
+                <a href="/logout" type="button" style="color: black;" class="btn btn-secondary">Logout</a>
                 {% else %}
-                <a href='/login'><button type="submit" value="Add">Login</button></a> | <a href='/register'><button
-                        type="submit" value="Add">Register</button></a>
+                <a href="/login" type="button" style="color: black;" class="btn btn-secondary">Sign in</a> | 
+                <a href="/register" type="button" style="color: black;" class="btn btn-secondary">Register</a>
                 {% endif %}
             </div>
-        </header><br>
-        <div class="wrapper">
-            <div class="sidebar">
+        </div><br>
+        <div class="wrapper bg-light">
+            <div class="main">
+                <h2>Cocktail Recipes</h2>
+            </div>
+            <div class="sidebar bg-light">
                 <ul style="text-decoration: none;">
-                    <li><a href="/" style="color: black;">Home</a></li>
-                    <li><a href="/profile" style="color: black;">Profile</a></li>
-                    <li><a href="/about" style="color: black;">About</a></li>
-                    <li><a href="/contact" style="color: black;">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/profile">Profile</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
                 </ul>
             </div>
-            <main class="cocktail_list">
-                <div class="header">
-                <h1>Cocktail Recipes</h1>
+            <div class="cocktail_list bg-light">
+<!-- The newest cocktail recipe should load here.
+I dont have all the code working for it yet though. -->
+                <div class="new_cocktail">
+                    <h5 style="text-align: left;">New Cocktail</h5>
+                    <div class="cocktail">
+                        <div class="cocktail_image">
+                            <img src="{{cocktail.image.url" alt="Cocktail Image">
+<!-- These will display the duration entered when working.  -->
+                            <div class="recipe_duration">
+                                    <p>{{ cocktail.duration }} mins</p>
+                                </div>
+                        </div>
+                        <a href="/cocktailrecipe/{{recipe.id}}"><button>{{ cocktail.cocktail_name}}</button></a>
+                    </div>
+                    <div class="cocktail">
+                        <div class="cocktail_image">
+                            <img src="{{cocktail.image.url" alt="Cocktail Image">
+                            <!-- <div class="recipe_duration">
+                                <p>{{ recipe.duration }} mins</p>
+                            </div> -->
+                        </div>
+                        <a href="/cocktailrecipe/{{recipe.id}}"><button>{{ cocktail.cocktail_name}}</button></a>
+                    </div>
+                    <div class="cocktail">
+                        <div class="cocktail_image">
+                            <img src="{{cocktail.image.url" alt="Cocktail Image">
+                            <!-- <div class="recipe_duration">
+                                <p>{{ recipe.duration }} mins</p>
+                            </div> -->
+                        </div>
+                        <a href="/cocktailrecipe/{{recipe.id}}"><button>{{ cocktail.cocktail_name}}</button></a>
+                    </div>
                 </div>
-                <div class="cocktail">
-                    <div class="row">
+<!-- Here is the end for the new recipes -->
+                    <!-- <div class="row">
                         <h4>Popular Recipes</h4>
                         <div class="col-sm-6">
                             <p>{{drink_name}}</p>
@@ -55,46 +88,42 @@
                         </div>
                         <div class="col-sm-6">
                             <h3>Your favorite Recipes</h3>
-                            <p>{{Favorited recipe goes here}}</p>
+                            <p>Favorited recipe goes here</p>
                         </div>
+                    </div> -->
+<!-- This is the start of the favorite recipes when its working. -->
+                <div class="favorite_cocktails">
+                    <h5 style="text-align: left;">Favorite Cocktails</h5>
+                    <div class="cocktail">
+                        <div class="cocktail_image">
+                            <img src="{{cocktail.image.url" alt="Cocktail Image">
+                            <!-- <div class="recipe_duration">
+                                <p>{{ recipe.duration }} mins</p>
+                            </div> -->
+                        </div>
+                        <button>cocktail name</button>
                     </div>
-                </div>
-                <div class="cocktail">
-                    <div class="cocktail_image">
-                        <h3>cocktail image</h3>
+                    <div class="cocktail">
+                        <div class="cocktail_image">
+                            <img src="{{cocktail.image.url" alt="Cocktail Image">
+                            <!-- <div class="recipe_duration">
+                                <p>{{ recipe.duration }} mins</p>
+                            </div> -->
+                        </div>
+                        <button>cocktail name</button>
                     </div>
-                    <button>cocktail name</button>
+                    <div class="cocktail">
+                        <div class="cocktail_image">
+                            <img src="{{cocktail.image.url" alt="Cocktail Image">
+                            <!-- <div class="recipe_duration">
+                                <p>{{ recipe.duration }} mins</p>
+                            </div> -->
+                        </div>
+                        <button>cocktail name</button>
+                    </div>    
                 </div>
-                <div class="cocktail">
-                    <div class="cocktail_image">
-                        <h3>cocktail image</h3>
-                    </div>
-                    <button>cocktail name</button>
-                </div>
-                <div class="cocktail">
-                    <div class="cocktail_image">
-                        <h3>cocktail image</h3>
-                    </div>
-                    <button>cocktail name</button>
-                </div>
-                <div class="cocktail">
-                    <div class="cocktail_image">
-                        <h3>cocktail image</h3>
-                    </div>
-                    <button>cocktail name</button>
-                </div>
-                <div class="cocktail">
-                    <div class="cocktail_image">
-                        <h3>cocktail image</h3>
-                    </div>
-                    <button>cocktail name</button>
-                </div>
+<!-- It ends here. -->
             </div>
-            <!-- <div class="searchbar">
-                <div>
-                    <h3>Search cocktails</h3>
-                </div>
-            </div> -->
         </div>
     </div>
     <footer class="footer">
