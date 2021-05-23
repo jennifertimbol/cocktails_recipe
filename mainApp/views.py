@@ -4,12 +4,11 @@ from .models import *
 import bcrypt
 from .forms import recipeForm
 import requests
+import json
 
 def homepage(request):
-    context = {
-        'curr_user': User.objects.get(id=request.session['curr_user'])
-    }
-    return render(request, 'homepage.html', context)
+    
+    return render(request, 'homepage.html')
 
 def register(request):
     return render(request, 'register.html')
@@ -52,11 +51,15 @@ def userprofile(request):
         return redirect('/')
     user = User.objects.get(id=request.session['curr_user'])
     response = requests.get('https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a')
+    #print(response.json()['drinks'][0])
+    # for key in response.json()['drinks']:
+    #     print(key)
+
     context= {
-        'user': user
-        'drink_name' = response.Drink.json()
-        'drink_image' = response.DrinkThumb.json()
-        'drink_instruction' = response.Instructions.json()
+        'user': user,
+        'drinks': response.json()['drinks'][:6],
+        # 'drink_image': response.DrinkThumb.json(),
+        # 'drink_instruction': response.Instructions.json()
     }
     return render(request, "profilepage.html", context)
 
@@ -91,9 +94,9 @@ def logout(request):
 def generate_api_recipe(request):
     response = requests.get('https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a')
     context = {
-        'drink_name' = response.Drink.json()
-        'drink_image' = response.DrinkThumb.json()
-        'drink_instruction' = response.Instructions.json()
+        'drink_name': response.Drink.json(),
+        'drink_image': response.DrinkThumb.json(),
+        'drink_instruction': response.Instructions.json()
     }
     return render(request, 'homepage.html', context)
 

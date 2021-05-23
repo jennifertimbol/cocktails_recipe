@@ -41,13 +41,16 @@
             <div class="col-sm-6">
                 <h2>Hello {{user.first_name}} {{user.last_name}}</h2>
                 <p>Most popular Recipes</p>
-                <p>{{drink_name}}</p>
-                <p>{{drink_image}}</p>
-                <p>{{drink_instruction}}</p>
+                {% for drink in drinks %}
+                <p>Name: {{drink.strDrink}}</p>
+                <img style="width: 200px; height: auto;" src="{{drink.strDrinkThumb}}" alt="">
+                <p>Instructions: {{drink.strInstructions}}</p>
+                <p>Ingredient: {{drink.strIngredient1}}</p>
+                {% endfor %}<hr>
             </div>
             <div class="col-sm-6">
                 <h3>Your favorite Recipes</h3>
-                <p>{{Favorited recipe goes here}}</p>
+                <p></p>
             </div>
         </div>
 
