@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your recipe</title>
+</head>
+<body>
+    <h1>This page will render after user uploads a recipe</h1>
+    <div class="container">
+        <img src="{{cocktail.image.url}}" alt="Cocktail Image">
+        <h3>{{cocktail.cocktail_name}}</h3>
+        <p>Uploaded by: {{user.first_name}}</p>
+        <p>{{cocktail.ingredients}}</p>
+        <p>{{cocktail.category}}</p>
+        <p>{{cocktail.duration}}</p>
+        <p>{{cocktail.description}}</p>
+        <p>{{cocktail.instruction}}</p>
+    </div>
+    <a href="/">Home</a>
+</body>
+</html>

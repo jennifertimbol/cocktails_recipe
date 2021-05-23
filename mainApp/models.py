@@ -1,6 +1,7 @@
 from django.db import models
 import re
 import bcrypt
+from PIL import Image
 
 email_regex = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
@@ -25,12 +26,6 @@ class UserManager(models.Manager):
             errors['pw_match'] = "Password must match!"
         
         return errors
-# class recipeManager(models.Manager):
-#     def recipe_validator(self,postData):
-#         errors = {}
-
-#         if len(postData['cocktail_name']) < 5:
-#             errors["cocktail_name"] = 'Name of your cocktail must be atleast5 characters long'
 
 class User(models.Model):
     first_name = models.CharField(max_length=55)
@@ -58,7 +53,15 @@ CATEGORY_CHOICES = (
 class Recipe(models.Model):
     cocktail_name = models.CharField(max_length=70)
     ingredients = models.TextField()
-    image = models.ImageField()
+    image = models.ImageField(null=True, blank=True, upload_to='media/')
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        img = Image.open(self.image.path)
+
+        if img.height > 300 or img.weight > 300:
+            output_size = (300,300)
+            img.thumbnail(output_size)
+            img.save(self.image.path)
     category = models.CharField(max_length=15, choices=CATEGORY_CHOICES, default="tequila")
     duration = models.IntegerField()
     description = models.TextField()
@@ -69,3 +72,28 @@ class Recipe(models.Model):
     # objects = recipeManager()
 
 # Create your models here.
+
+    # def save(self, *args, **kwargs):
+    #     super().save(*args, **kwargs)
+    #     img = Image.open(self.image.path)
+    #     if img.height < img.width:
+    #         # make square by cutting off equal amounts left and right
+    #         left = (img.width - img.height) / 2
+    #         right = (img.width + img.height) / 2
+    #         top = 0
+    #         bottom = img.height
+    #         img = img.crop((left, top, right, bottom))
+
+    #     elif img.width < img.height:
+    #         # make square by cutting off bottom
+    #         left = (img.width - img.height) / 2
+    #         right = (img.width + img.height) / 2
+    #         top = 0
+    #         bottom = img.height
+    #         img = img.crop((left, top, right, bottom))
+
+    #     if img.height > 300 or img.weight > 300:
+    #         output_size = (300,300)
+    #         img.thumbnail(output_size)
+
+    #     img.save(self.image.path)
