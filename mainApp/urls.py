@@ -15,3 +15,4 @@ urlpatterns = [
     path('logout', views.logout),
     path('generate_api_recipe', views.generate_api_recipe)
 ]
+

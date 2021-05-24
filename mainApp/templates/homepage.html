@@ -44,6 +44,20 @@
                     <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
                 </ul>
             </div>
+            <div class="col-sm-6">
+                <h4>Popular Recipes</h4>
+            {% for cocktail in cocktails %}
+                <h4>Name: {{cocktail.strDrink}}</h4>
+                <img style="width: 200px; height: auto;" src="{{cocktail.strDrinkThumb}}" alt="Cocktail Image">
+                <p>Instructions: {{cocktail.strInstructions}}</p>
+                <p>Ingredients: {{cocktail.strIngredient1}}, {{cocktail.strIngredient2}}, {{cocktail.strIngredient3}}, {{cocktail.strIngredient4}}, {{cocktail.strIngredient5}}, {{cocktail.strIngredient6}}</p>
+                {% endfor %}
+            </div>
+            <div class="col-sm-6">
+                <h3>Your favorite Recipes</h3>
+                <p>Favorited recipe goes here</p>
+                <a href="/deletecocktail/{{cocktail.id}}"><button>Delete</button></a><br>
+            </div>
             <!--<div class="cocktail_list bg-light">
 <!-- The newest cocktail recipe should load here.
 I dont have all the code working for it yet though. -->

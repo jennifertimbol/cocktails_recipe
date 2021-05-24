@@ -11,9 +11,9 @@ def homepage(request):
         return redirect('/')
     user = User.objects.get(id=request.session['curr_user'])
     response = requests.get('https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a')
-    #print(response.json()['drinks'][0])
-    # for key in response.json()['drinks']:
-    #     print(key)
+    # #print(response.json()['drinks'][0])
+    # # for key in response.json()['drinks']:
+    # #     print(key)
 
     context= {
         'user': user,
