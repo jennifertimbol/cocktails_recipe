@@ -7,16 +7,16 @@ import requests
 import json
 
 def homepage(request):
-    if 'curr_user' not in request.session:
-        return redirect('/')
-    user = User.objects.get(id=request.session['curr_user'])
+    # if 'curr_user' not in request.session:
+    #     return redirect('/')
+    # user = User.objects.get(id=request.session['curr_user'])
     response = requests.get('https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a')
     #print(response.json()['drinks'][0])
     # for key in response.json()['drinks']:
     #     print(key)
 
     context= {
-        'user': user,
+        # 'user': user,
         'cocktails': response.json()['drinks'][:6],
     }
     return render(request, 'homepage.html', context)
@@ -119,12 +119,11 @@ def logout(request):
     request.session.flush()
     return redirect('/')
 
-def generate_api_recipe(request):
-    response = requests.get('https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a')
-    context = {
-        'drink_name': response.Drink.json(),
-        'drink_image': response.DrinkThumb.json(),
-        'drink_instruction': response.Instructions.json()
-    }
+# def generate_api_recipe(request):
+#     response = requests.get('https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a')
+#     context = {
+#         'drink_name': response.Drink.json(),
+#         'drink_image': response.DrinkThumb.json(),
+#         'drink_instruction': response.Instructions.json()
+#   }
     return render(request, 'homepage.html', context)
-

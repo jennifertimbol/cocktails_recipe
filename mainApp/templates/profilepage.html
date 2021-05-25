@@ -45,9 +45,11 @@
                 <h4>Popular Recipes</h4>
             {% for cocktail in cocktails %}
                 <h4>Name: {{cocktail.strDrink}}</h4>
-                <img style="width: 200px; height: auto;" src="{{cocktail.strDrinkThumb}}" alt="Cocktail Image">
-                <p>Instructions: {{cocktail.strInstructions}}</p>
-                <p>Ingredients: {{cocktail.strIngredient1}}, {{cocktail.strIngredient2}}, {{cocktail.strIngredient3}}, {{cocktail.strIngredient4}}, {{cocktail.strIngredient5}}, {{cocktail.strIngredient6}}</p>
+                <img style="width: 100px; height: auto;" src="{{cocktail.strDrinkThumb}}" alt="Cocktail Image">
+                <p style="display: none">Instructions: {{cocktail.strInstructions}}</p>
+                <p style="display: none">Ingredients: {{cocktail.strIngredient1}}, {{cocktail.strIngredient2}}, {{cocktail.strIngredient3}}, {{cocktail.strIngredient4}}, {{cocktail.strIngredient5}}, {{cocktail.strIngredient6}}</p>
+                <button type="button" class="btn btn-dark">Show recipe &amp; ingredients</button>
+                <button type="button" class="btn btn-dark" id="hide">Hide recipe &amp; ingredients</button>
                 {% endfor %}
             </div>
             <div class="col-sm-6">
@@ -60,6 +62,15 @@
         </div>
         
     </div>
+    <script>
+        $( "button" ).click(function() {
+          $( "p" ).show( "slow" );
+        });
+
+        $( "#hide" ).click(function() {
+            $( "p" ).hide( "slow");
+        });
+        </script>
 </body>
 
 </html>

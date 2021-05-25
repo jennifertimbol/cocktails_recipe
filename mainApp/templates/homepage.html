@@ -16,7 +16,7 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
     {% load static %}
-    <link rel="stylesheet" href="{% static 'homepage.css' %}">
+    <link rel="stylesheet" href="{% static '/homepage.css' %}">
     <title>Homepage</title>
 </head>
 
@@ -35,6 +35,14 @@
         <div class="wrapper bg-light">
             <div class="main">
                 <h2>Popular Cocktail Recipes</h2>
+                {% for cocktail in cocktails %}
+                <h4>Name: {{cocktail.strDrink}}</h4>
+                <img style="width: 100px; height: auto;" src="{{cocktail.strDrinkThumb}}" alt="Cocktail Image">
+                <button>Show recipe &amp; ingredients</button>
+                <button id="hide">Hide recipe &amp; ingredients</button>
+                <p style="display: none">Instructions: {{cocktail.strInstructions}}</p>
+                <p style="display: none">Ingredients: {{cocktail.strIngredient1}}, {{cocktail.strIngredient2}}, {{cocktail.strIngredient3}}, {{cocktail.strIngredient4}}, {{cocktail.strIngredient5}}, {{cocktail.strIngredient6}}</p>
+                {% endfor %}
             </div>
             <div class="sidebar bg-light">
                 <ul style="text-decoration: none;">
@@ -45,14 +53,14 @@
                 </ul>
             </div>
             <!--<div class="cocktail_list bg-light">
-<!-- The newest cocktail recipe should load here.
+The newest cocktail recipe should load here.
 I dont have all the code working for it yet though. -->
                 <!--<div class="new_cocktail">
                     <h5 style="text-align: left;">New Cocktail</h5>
                     <div class="cocktail">
                         <div class="cocktail_image">
                             <img src="{{cocktail.image.url" alt="Cocktail Image">
-<!-- These will display the duration entered when working.  -->
+ These will display the duration entered when working.  -->
                             <!--<div class="recipe_duration">
                                     <p>{{ cocktail.duration }} mins</p>
                                 </div>
@@ -62,23 +70,23 @@ I dont have all the code working for it yet though. -->
                     <div class="cocktail">
                         <div class="cocktail_image">
                             <img src="{{cocktail.image.url" alt="Cocktail Image">
-                            <!-- <div class="recipe_duration">
+                             <div class="recipe_duration">
                                 <p>{{ recipe.duration }} mins</p>
                             </div> -->
                        <!---- </div>
-                       <!---- <a href="/cocktailrecipe/{{recipe.id}}"><button>{{ cocktail.cocktail_name}}</button></a>
+                       <-- <a href="/cocktailrecipe/{{recipe.id}}"><button>{{ cocktail.cocktail_name}}</button></a>
                     </div>
                     <div class="cocktail">
                         <div class="cocktail_image">
                             <img src="{{cocktail.image.url" alt="Cocktail Image">
-                            <!-- <div class="recipe_duration">
+                             <div class="recipe_duration">
                                 <p>{{ recipe.duration }} mins</p>
                             </div> -->
                        <!---- </div>
                         <a href="/cocktailrecipe/{{recipe.id}}"><button>{{ cocktail.cocktail_name}}</button></a>
                     </div>
                 </div>
-<!-- Here is the end for the new recipes -->
+ Here is the end for the new recipes -->
                     <!-- <div class="row">
                         <h4>Popular Recipes</h4>
                         <div class="col-sm-6">
@@ -115,30 +123,32 @@ I dont have all the code working for it yet though. -->
                     <div class="cocktail">
                         <div class="cocktail_image">
                             <img src="{{cocktail.image.url" alt="Cocktail Image">
-                            <!-- <div class="recipe_duration">
+                             <div class="recipe_duration">
                                 <p>{{ recipe.duration }} mins</p>
                             </div> -->
                         <!--</div>
                         <button>cocktail name</button>
                     </div>    
                 </div>
-<!-- It ends here. -->
+ It ends here. -->
 
-<h4>Popular Recipes</h4>
-            {% for cocktail in cocktails %}
-                <h4>Name: {{cocktail.strDrink}}</h4>
-                <img style="width: 200px; height: auto;" src="{{cocktail.strDrinkThumb}}" alt="Cocktail Image">
-                <p>Instructions: {{cocktail.strInstructions}}</p>
-                <p>Ingredients: {{strIngredient1}}, {{strIngredient2}}, {{strIngredient3}}, {{strIngredient4}}, {{strIngredient5}}, {{strIngredient6}}</p>
-                {% endfor %}
+            
             </div>
         </div>
-    </div>
     <footer class="footer">
         <div class="">
 
         </div>
     </footer>
+    <script>
+        $( "button" ).click(function() {
+          $( "p" ).show( "slow" );
+        });
+
+        $( "#hide" ).click(function() {
+            $( "p" ).hide();
+        });
+        </script>
 </body>
 
 </html>
