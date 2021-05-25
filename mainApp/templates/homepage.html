@@ -34,7 +34,7 @@
         </div><br>
         <div class="wrapper bg-light">
             <div class="main">
-                <h2>Popular Cocktail Recipes</h2>
+                <h2>Cocktail Recipes</h2>
             </div>
             <div class="sidebar bg-light">
                 <ul style="text-decoration: none;">
@@ -44,7 +44,7 @@
                     <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
                 </ul>
             </div>
-            <div class="col-sm-6">
+            <!-- <div class="popular_recipes" style="display: inline-block;">
                 <h4>Popular Recipes</h4>
             {% for cocktail in cocktails %}
                 <h4>Name: {{cocktail.strDrink}}</h4>
@@ -57,94 +57,38 @@
                 <h3>Your favorite Recipes</h3>
                 <p>Favorited recipe goes here</p>
                 <a href="/deletecocktail/{{cocktail.id}}"><button>Delete</button></a><br>
-            </div>
-            <!--<div class="cocktail_list bg-light">
-<!-- The newest cocktail recipe should load here.
-I dont have all the code working for it yet though. -->
-                <!--<div class="new_cocktail">
-                    <h5 style="text-align: left;">New Cocktail</h5>
+            </div> -->
+            <div class="cocktail_list bg-light">
+                <div class="new_cocktail">
+                    <h3 style="text-align: left;">List of all Cocktail</h3>
+                    {% for cocktail in cocktails %}
                     <div class="cocktail">
                         <div class="cocktail_image">
-                            <img src="{{cocktail.image.url" alt="Cocktail Image">
-<!-- These will display the duration entered when working.  -->
-                            <!--<div class="recipe_duration">
-                                    <p>{{ cocktail.duration }} mins</p>
-                                </div>
+                            <img style="width: 300px; height: auto;" src="{{cocktail.strDrinkThumb}}" alt="Cocktail Image">
+                            <div class="recipe_duration">
+                                <p>{{ cocktail.strDuration }} mins</p>
+                            </div>
                         </div>
-                        <a href="/cocktailrecipe/{{recipe.id}}"><button>{{ cocktail.cocktail_name}}</button></a>
+                        <a href="/cocktailrecipe/{{cocktails.id}}"><button>Name: {{cocktail.strDrink}}</button></a>
                     </div>
-                    <div class="cocktail">
-                        <div class="cocktail_image">
-                            <img src="{{cocktail.image.url" alt="Cocktail Image">
-                            <!-- <div class="recipe_duration">
-                                <p>{{ recipe.duration }} mins</p>
-                            </div> -->
-                       <!---- </div>
-                       <!---- <a href="/cocktailrecipe/{{recipe.id}}"><button>{{ cocktail.cocktail_name}}</button></a>
-                    </div>
-                    <div class="cocktail">
-                        <div class="cocktail_image">
-                            <img src="{{cocktail.image.url" alt="Cocktail Image">
-                            <!-- <div class="recipe_duration">
-                                <p>{{ recipe.duration }} mins</p>
-                            </div> -->
-                       <!---- </div>
-                        <a href="/cocktailrecipe/{{recipe.id}}"><button>{{ cocktail.cocktail_name}}</button></a>
-                    </div>
-                </div>
-<!-- Here is the end for the new recipes -->
-                    <!-- <div class="row">
-                        <h4>Popular Recipes</h4>
-                        <div class="col-sm-6">
-                            <p>{{drink_name}}</p>
-                            <p>{{drink_image}}</p>
-                            <p>{{drink_instruction}}</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <h3>Your favorite Recipes</h3>
-                            <p>Favorited recipe goes here</p>
-                        </div>
-                    </div> -->
-<!-- This is the start of the favorite recipes when its working. -->
-              <!----  <div class="favorite_cocktails">
-                    <h5 style="text-align: left;">Favorite Cocktails</h5>
-                    <div class="cocktail">
-                        <div class="cocktail_image">
-                            <img src="{{cocktail.image.url" alt="Cocktail Image">
-                             <div class="recipe_duration">
-                                <p>{{ recipe.duration }} mins</p>
-                            </div> -->
-                        <!--</div>
-                        <button>cocktail name</button>
-                    </div>
-                    <div class="cocktail">
-                        <div class="cocktail_image">
-                            <img src="{{cocktail.image.url" alt="Cocktail Image">
-                             <div class="recipe_duration">
-                                <p>{{ recipe.duration }} mins</p>
-                            </div> -->
-                       <!---- </div>
-                        <button>cocktail name</button>
-                    </div>
-                    <div class="cocktail">
-                        <div class="cocktail_image">
-                            <img src="{{cocktail.image.url" alt="Cocktail Image">
-                            <!-- <div class="recipe_duration">
-                                <p>{{ recipe.duration }} mins</p>
-                            </div> -->
-                        <!--</div>
-                        <button>cocktail name</button>
-                    </div>    
-                </div>
-<!-- It ends here. -->
+                    {% endfor %}
 
-<h4>Popular Recipes</h4>
-            {% for cocktail in cocktails %}
-                <h4>Name: {{cocktail.strDrink}}</h4>
-                <img style="width: 200px; height: auto;" src="{{cocktail.strDrinkThumb}}" alt="Cocktail Image">
-                <p>Instructions: {{cocktail.strInstructions}}</p>
-                <p>Ingredients: {{strIngredient1}}, {{strIngredient2}}, {{strIngredient3}}, {{strIngredient4}}, {{strIngredient5}}, {{strIngredient6}}</p>
-                {% endfor %}
+                    {% for cocktails in all_cocktails %}
+                    <div class="cocktail">
+                        <div class="cocktail_image">
+                            <img src="{{cocktails.image.url}}" alt="Cocktail Image" width="300px">
+                            <h3>{{cocktails.cocktail_name}}</h3>
+                            <p>Uploaded by: {{user.first_name}}</p>
+                            <div class="recipe_duration">
+                                <p>{{ cocktails.duration }} mins</p>
+                            </div>
+                        </div>
+                        <a href="/cocktailrecipe/{{cocktails.id}}"><button type="button" class="btn btn-primary">View Cocktail</button></a>
+                        <a href="/deletecocktail/{{cocktails.id}}"><button type="button" class="btn btn-primary">Delete</button></a>
+                        </div>
+                    {% endfor %}
+
+                </div>
             </div>
         </div>
     </div>

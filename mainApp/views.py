@@ -11,13 +11,15 @@ def homepage(request):
         return redirect('/')
     user = User.objects.get(id=request.session['curr_user'])
     response = requests.get('https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a')
-    # #print(response.json()['drinks'][0])
-    # # for key in response.json()['drinks']:
-    # #     print(key)
+    all_cocktails = Recipe.objects.all()
+    # print(response.json()['drinks'][0])
+    # for key in response.json()['drinks']:
+    #     print(key)
 
     context= {
         'user': user,
-        'cocktails': response.json()['drinks'][:6],
+        'cocktails': response.json()['drinks'][:9],
+        'all_cocktails': all_cocktails,
     }
     return render(request, 'homepage.html', context)
 
@@ -62,6 +64,7 @@ def userprofile(request):
         return redirect('/')
     user = User.objects.get(id=request.session['curr_user'])
     response = requests.get('https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a')
+    cocktails = Recipe.objects.filter(posted_by=user)
     #print(response.json()['drinks'][0])
     # for key in response.json()['drinks']:
     #     print(key)
@@ -69,6 +72,7 @@ def userprofile(request):
     context= {
         'user': user,
         'cocktails': response.json()['drinks'][:6],
+        'created_cocktails': cocktails
         
     }
     return render(request, "profilepage.html", context)
@@ -102,8 +106,8 @@ def cocktailprofile(request, recipe_id):
     cocktail = Recipe.objects.get(id=recipe_id)
 
     context= {
-        'user':user,
-        'cocktail':cocktail
+        'user': user,
+        'cocktail': cocktail
     }
     return render(request, "cocktailrecipe.html", context)
 
