@@ -73,6 +73,6 @@ class Recipe(models.Model):
 class Comment(models.Model):
     message = models.TextField()
     commented_by = models.ForeignKey(User, related_name="poster", on_delete=models.CASCADE)
-    recipe_comments = models.ManyToManyField(Recipe, related_name="recipes", on_delete=models.CASCADE)
+    recipe_comments = models.ManyToManyField(Recipe, related_name="recipes")
     created_at = models.DateField(auto_now_add=True)
     

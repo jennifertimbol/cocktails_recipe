@@ -3,26 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <title>Your recipe</title>
 </head>
 <body>
-    <nav>
-        <a href="/home">Home</a>
-        <a href="/profile">Profile</a>
-        <a href="#">Contact</a>
-        <a href="#">About</a>
-    </nav>
-    <h1>This page will render after user uploads a recipe</h1>
     <div class="container">
-        <img src="{{cocktail.image.url}}" alt="Cocktail Image" width="300px">
-        <h3>{{cocktail.cocktail_name}}</h3>
-        <p>Uploaded by: {{user.first_name}}</p>
-        <p>{{cocktail.ingredients}}</p>
-        <p>{{cocktail.category}}</p>
-        <p>{{cocktail.duration}}</p>
-        <p>{{cocktail.description}}</p>
-        <p>{{cocktail.instruction}}</p>
+        <div class="wrapper bg-light">
+            <div class="row" style="text-align: right;">
+                <div class="col-sm">
+                    <a href="/logout"><button type="button" class="btn btn-secondary">Logout</button></a>
+                    <a href="/profile"><button type="button" class="btn btn-secondary">Go Back</button></a>
+                </div>
+            </div>
+            <nav>
+                <a href="/home">Home</a>
+                <a href="/profile">Profile</a>
+                <a href="#">Contact</a>
+                <a href="#">About</a>
+            </nav>
+            <h2>{{cocktail.cocktail_name}}</h2>
+            <img src="{{cocktail.image.url}}" alt="Cocktail Image" width="300px">
+            <p>Uploaded by: {{user.first_name}} {{user.last_name}}</p>
+            <h4>Ingredients:</h4>
+            <p>{{cocktail.ingredients}}</p>
+            <h4>Drink category:</h4>
+            <p>{{cocktail.category}}</p>
+            <h4>Time to make:</h4>
+            <p>{{cocktail.duration}} mins</p>
+            <h4>Drink desctription:</h4>
+            <p>{{cocktail.description}}</p>
+            <h4>Instructions:</h4>
+            <p>{{cocktail.instruction}}</p>
+        <a href="/editrecipe/{{cocktail.id}}"><button type="button" class="btn btn-primary">Edit</button></a>
+        <a href="/deletecocktail/{{cocktail.id}}"><button type="button" class="btn btn-primary">Delete</button></a>
+        <a href="/">Home</a>    
+        </div>
     </div>
-    <a href="/">Home</a>
 </body>
 </html>

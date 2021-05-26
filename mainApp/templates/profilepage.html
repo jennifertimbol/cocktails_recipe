@@ -44,43 +44,43 @@
                     <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
                 </ul>
             </div>
-            <div class="headline">
-                <h3 style="text-align: left;">Created Cocktails</h3>
-                {% for cocktail in created_cocktails %}
-                <div class="created_recipes" style="display: inline-block;">
-                    <img src="{{cocktail.image.url}}" alt="Cocktail Image" width="300px">
-                    <h3>{{cocktail.cocktail_name}}</h3>
-                    <p>Uploaded by: {{user.first_name}}</p>
-                    <p>{{cocktail.duration}} mins</p>
-                    <a href="/cocktailrecipe/{{cocktail.id}}"><button type="button" class="btn btn-primary">View Cocktail</button></a>
-                    <a href="/deletecocktail/{{cocktail.id}}"><button type="button" class="btn btn-primary">Delete</button></a>
+            <div class="main_content">
+                <div class="headline">
+                    <h3 style="text-align: left;">Created Cocktails</h3>
+                    {% for cocktail in created_cocktails %}
+                    <div class="created_recipes" style="display: inline-block;">
+                        <img src="{{cocktail.image.url}}" alt="Cocktail Image" width="300px">
+                        <h3>{{cocktail.cocktail_name}}</h3>
+                        <!-- <p>{{cocktail.duration}} mins</p> -->
+                        <a href="/cocktailrecipe/{{cocktail.id}}"><button type="button" class="btn btn-primary">View Cocktail</button></a>
+                    </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
-            </div>
 
 <!-- Still need to create a function to favorite recipes and have them displayed here. -->
 
-            <div class="col-sm-6">
-                <h3>Your favorite Recipes</h3>
-                <p>Favorited recipe goes here</p>
-                <a href="/deletecocktail/{{cocktail.id}}"><button>Delete</button></a><br>
-            </div>
+                <div class="col-sm-6">
+                    <h3>Your favorite Recipes</h3>
+                    <p>Favorited recipe goes here</p>
+                    <a href="/deletecocktail/{{cocktail.id}}"><button>Delete</button></a><br>
+                </div>
 
-            <div class="cocktail_list bg-light">
-                <div class="new_cocktail">
-                    <h3 style="text-align: left;">You might also like</h3>
+                <div class="cocktail_list bg-light">
+                    <div class="new_cocktail">
+                        <h3 style="text-align: left;">You might also like</h3>
 
-                    {% for cocktail in cocktails %}
-                    <div class="cocktail">
-                        <div class="cocktail_image">
-                            <img style="width: 300px; height: auto;" src="{{cocktail.strDrinkThumb}}" alt="Cocktail Image">
-                            <div class="recipe_duration">
-                                <p>{{ cocktail.Duration }} mins</p>
+                        {% for cocktail in cocktails %}
+                        <div class="cocktail">
+                            <div class="cocktail_image">
+                                <img style="width: 300px; height: auto;" src="{{cocktail.strDrinkThumb}}" alt="Cocktail Image">
+                                <div class="recipe_duration">
+                                    <!-- <p>{{ cocktail.Duration }} mins</p> -->
+                                </div>
                             </div>
+                            <a href="/cocktailrecipe/{{cocktail.id}}"><button>Name: {{cocktail.strDrink}}</button></a>
                         </div>
-                        <a href="/cocktailrecipe/{{cocktail.id}}"><button>Name: {{cocktail.strDrink}}</button></a>
+                        {% endfor %}
                     </div>
-                    {% endfor %}
                 </div>
             </div>
         </div>        

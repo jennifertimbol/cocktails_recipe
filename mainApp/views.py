@@ -120,17 +120,17 @@ def deletecocktail(request, recipe_id):
     return redirect('/profile')
 
 def editrecipe(request, recipe_id):
-    if 'curr_user' not in request.session:
-        return redirect('/')
-    user = User.objects.get(id=request.session['curr_id'])
+    # if 'curr_user' not in request.session:
+    #     return redirect('/')
+    # user = User.objects.get(id=request.session['curr_id'])
     this_recipe = Recipe.objects.get(id=recipe_id)
 
     context = {
-        'user':user,
-        'cocktail':this_recipe,
+        # 'user': user,
+        'cocktail': this_recipe,
         'recipeForm': recipeForm()
     }
-    return render(request, 'editrecipe.html', context)
+    return render(request, 'edit_recipe.html', context)
 
 def saveupdatedrecipe(request, recipe_id):
     if request.method == 'POST':

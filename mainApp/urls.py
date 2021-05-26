@@ -12,6 +12,7 @@ urlpatterns = [
     path('uploadrecipe', views.uploadrecipe),
     path('cocktailrecipe/<int:recipe_id>', views.cocktailprofile),
     path('deletecocktail/<int:recipe_id>', views.deletecocktail),
+    path('editrecipe/<int:recipe_id>', views.editrecipe),
     path('logout', views.logout),
     path('generate_api_recipe', views.generate_api_recipe)
 ]

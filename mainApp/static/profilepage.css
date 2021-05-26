@@ -26,6 +26,15 @@
     vertical-align: top;
 }
 
+.main_content {
+    width: 950px;
+    height: auto;
+    vertical-align: top;
+    text-align: center;
+    display: inline-block;
+    
+}
+
 .user {
     display: inline-block;
 }

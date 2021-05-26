@@ -65,9 +65,9 @@
                     <div class="cocktail">
                         <div class="cocktail_image">
                             <img style="width: 300px; height: auto;" src="{{cocktail.strDrinkThumb}}" alt="Cocktail Image">
-                            <div class="recipe_duration">
+                            <!-- <div class="recipe_duration">
                                 <p>{{ cocktail.strDuration }} mins</p>
-                            </div>
+                            </div> -->
                         </div>
                         <a href="/cocktailrecipe/{{cocktails.id}}"><button>Name: {{cocktail.strDrink}}</button></a>
                     </div>
@@ -75,16 +75,15 @@
 
                     {% for cocktails in all_cocktails %}
                     <div class="cocktail">
-                        <div class="cocktail_image">
+                        <div class="cocktail_image" style="text-align: center;">
                             <img src="{{cocktails.image.url}}" alt="Cocktail Image" width="300px">
                             <h3>{{cocktails.cocktail_name}}</h3>
                             <p>Uploaded by: {{user.first_name}}</p>
-                            <div class="recipe_duration">
+                            <!-- <div class="recipe_duration">
                                 <p>{{ cocktails.duration }} mins</p>
-                            </div>
+                            </div> -->
                         </div>
                         <a href="/cocktailrecipe/{{cocktails.id}}"><button type="button" class="btn btn-primary">View Cocktail</button></a>
-                        <a href="/deletecocktail/{{cocktails.id}}"><button type="button" class="btn btn-primary">Delete</button></a>
                         </div>
                     {% endfor %}
 
