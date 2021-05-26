@@ -138,8 +138,7 @@ def saveupdatedrecipe(request, recipe_id):
         curr_recipe = Recipe.objects.get(id=recipe_id)
         postedUpdatedRecipeForm = recipeForm(request.POST, instance=curr_recipe)
         if postedUpdatedRecipeForm.is_valid():
-            postedUpdatedRecipeForm.save()
-
+            form = postedUpdatedRecipeForm.save()
     else:
         context = {
             'user':user,
