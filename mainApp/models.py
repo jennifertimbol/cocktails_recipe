@@ -69,31 +69,10 @@ class Recipe(models.Model):
     posted_by = models.ForeignKey(User, related_name="drinks", on_delete=models.CASCADE)
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
-    # objects = recipeManager()
 
-# Create your models here.
-
-    # def save(self, *args, **kwargs):
-    #     super().save(*args, **kwargs)
-    #     img = Image.open(self.image.path)
-    #     if img.height < img.width:
-    #         # make square by cutting off equal amounts left and right
-    #         left = (img.width - img.height) / 2
-    #         right = (img.width + img.height) / 2
-    #         top = 0
-    #         bottom = img.height
-    #         img = img.crop((left, top, right, bottom))
-
-    #     elif img.width < img.height:
-    #         # make square by cutting off bottom
-    #         left = (img.width - img.height) / 2
-    #         right = (img.width + img.height) / 2
-    #         top = 0
-    #         bottom = img.height
-    #         img = img.crop((left, top, right, bottom))
-
-    #     if img.height > 300 or img.weight > 300:
-    #         output_size = (300,300)
-    #         img.thumbnail(output_size)
-
-    #     img.save(self.image.path)
+class Comment(models.Model):
+    message = models.TextField()
+    commented_by = models.ForeignKey(User, related_name="poster", on_delete=models.CASCADE)
+    recipe_comments = models.ManyToManyField(Recipe, related_name="recipes", on_delete=models.CASCADE)
+    created_at = models.DateField(auto_now_add=True)
+    
