@@ -13,9 +13,8 @@
         <a href="#">About</a>
     </nav>
     <h1>This page will render after user uploads a recipe</h1>
-
-    <main>
-        <img src="{{cocktail.image.url}}" alt="Cocktail Image">
+    <div class="container">
+        <img src="{{cocktail.image.url}}" alt="Cocktail Image" width="300px">
         <h3>{{cocktail.cocktail_name}}</h3>
         <p>Uploaded by: {{user.first_name}}</p>
         <p>{{cocktail.ingredients}}</p>
@@ -23,6 +22,7 @@
         <p>{{cocktail.duration}}</p>
         <p>{{cocktail.description}}</p>
         <p>{{cocktail.instruction}}</p>
-    </main>
+    </div>
+    <a href="/">Home</a>
 </body>
 </html>

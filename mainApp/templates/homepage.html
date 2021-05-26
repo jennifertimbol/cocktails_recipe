@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <!-- Latest compiled and minified CSS -->
+    <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
     <!-- jQuery library -->
@@ -22,79 +22,74 @@
 
 <body>
     <div class="container">
-        <header class="header">
-            <div class="navbar">
+        <div class="top">
+            <div class="col">
                 {% if request.session.curr_user %}
-                <a href="/logout">Logout</a>
+                <a href="/logout" type="button" style="color: black;" class="btn btn-secondary">Logout</a>
                 {% else %}
-                <a href='/login'><button type="submit" value="Add">Login</button></a> | <a href='/register'><button
-                        type="submit" value="Add">Register</button></a>
+                <a href="/login" type="button" style="color: black;" class="btn btn-secondary">Sign in</a> | 
+                <a href="/register" type="button" style="color: black;" class="btn btn-secondary">Register</a>
                 {% endif %}
             </div>
-        </header><br>
-        <div class="wrapper">
-            <div class="sidebar">
+        </div><br>
+        <div class="wrapper bg-light">
+            <div class="main">
+                <h2>Cocktail Recipes</h2>
+            </div>
+            <div class="sidebar bg-light">
                 <ul style="text-decoration: none;">
-                    <li><a href="/" style="color: black;">Home</a></li>
-                    <li><a href="/profile" style="color: black;">Profile</a></li>
-                    <li><a href="/about" style="color: black;">About</a></li>
-                    <li><a href="/contact" style="color: black;">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/profile">Profile</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
                 </ul>
             </div>
-            <main class="cocktail_list">
-                <div class="header">
-                <h1>Cocktail Recipes</h1>
-                </div>
-                <div class="cocktail">
-                    <div class="row">
-                        <h4>Popular Recipes</h4>
-                        <div class="col-sm-6">
-                            <p>{{drink_name}}</p>
-                            <p>{{drink_image}}</p>
-                            <p>{{drink_instruction}}</p>
+            <!-- <div class="popular_recipes" style="display: inline-block;">
+                <h4>Popular Recipes</h4>
+            {% for cocktail in cocktails %}
+                <h4>Name: {{cocktail.strDrink}}</h4>
+                <img style="width: 200px; height: auto;" src="{{cocktail.strDrinkThumb}}" alt="Cocktail Image">
+                <p>Instructions: {{cocktail.strInstructions}}</p>
+                <p>Ingredients: {{cocktail.strIngredient1}}, {{cocktail.strIngredient2}}, {{cocktail.strIngredient3}}, {{cocktail.strIngredient4}}, {{cocktail.strIngredient5}}, {{cocktail.strIngredient6}}</p>
+                {% endfor %}
+            </div>
+            <div class="col-sm-6">
+                <h3>Your favorite Recipes</h3>
+                <p>Favorited recipe goes here</p>
+                <a href="/deletecocktail/{{cocktail.id}}"><button>Delete</button></a><br>
+            </div> -->
+            <div class="cocktail_list bg-light">
+                <div class="new_cocktail">
+                    <h3 style="text-align: left;">List of all Cocktail</h3>
+                    {% for cocktail in cocktails %}
+                    <div class="cocktail">
+                        <div class="cocktail_image">
+                            <img style="width: 300px; height: auto;" src="{{cocktail.strDrinkThumb}}" alt="Cocktail Image">
+                            <div class="recipe_duration">
+                                <p>{{ cocktail.strDuration }} mins</p>
+                            </div>
                         </div>
-                        <div class="col-sm-6">
-                            <h3>Your favorite Recipes</h3>
-                            <p>{{Favorited recipe goes here}}</p>
+                        <a href="/cocktailrecipe/{{cocktails.id}}"><button>Name: {{cocktail.strDrink}}</button></a>
+                    </div>
+                    {% endfor %}
+
+                    {% for cocktails in all_cocktails %}
+                    <div class="cocktail">
+                        <div class="cocktail_image">
+                            <img src="{{cocktails.image.url}}" alt="Cocktail Image" width="300px">
+                            <h3>{{cocktails.cocktail_name}}</h3>
+                            <p>Uploaded by: {{user.first_name}}</p>
+                            <div class="recipe_duration">
+                                <p>{{ cocktails.duration }} mins</p>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="cocktail">
-                    <div class="cocktail_image">
-                        <h3>cocktail image</h3>
-                    </div>
-                    <button>cocktail name</button>
-                </div>
-                <div class="cocktail">
-                    <div class="cocktail_image">
-                        <h3>cocktail image</h3>
-                    </div>
-                    <button>cocktail name</button>
-                </div>
-                <div class="cocktail">
-                    <div class="cocktail_image">
-                        <h3>cocktail image</h3>
-                    </div>
-                    <button>cocktail name</button>
-                </div>
-                <div class="cocktail">
-                    <div class="cocktail_image">
-                        <h3>cocktail image</h3>
-                    </div>
-                    <button>cocktail name</button>
-                </div>
-                <div class="cocktail">
-                    <div class="cocktail_image">
-                        <h3>cocktail image</h3>
-                    </div>
-                    <button>cocktail name</button>
+                        <a href="/cocktailrecipe/{{cocktails.id}}"><button type="button" class="btn btn-primary">View Cocktail</button></a>
+                        <a href="/deletecocktail/{{cocktails.id}}"><button type="button" class="btn btn-primary">Delete</button></a>
+                        </div>
+                    {% endfor %}
+
                 </div>
             </div>
-            <!-- <div class="searchbar">
-                <div>
-                    <h3>Search cocktails</h3>
-                </div>
-            </div> -->
         </div>
     </div>
     <footer class="footer">

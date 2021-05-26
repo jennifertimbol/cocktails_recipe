@@ -7,13 +7,21 @@ import requests
 import json
 
 def homepage(request):
+    if 'curr_user' not in request.session:
+        return redirect('/')
+    user = User.objects.get(id=request.session['curr_user'])
     response = requests.get('https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a')
+    all_cocktails = Recipe.objects.all()
+    # print(response.json()['drinks'][0])
+    # for key in response.json()['drinks']:
+    #     print(key)
+
     context= {
-        'drink_name': response.Drink.json(),
-        'drink_image':response.DrinkThumb.json(),
-        'drink_instruction': response.  Instructions.json()
+        'user': user,
+        'cocktails': response.json()['drinks'][:9],
+        'all_cocktails': all_cocktails,
     }
-    return render(request, 'homepage.html')
+    return render(request, 'homepage.html', context)
 
 def register(request):
     return render(request, 'register.html')
@@ -55,10 +63,17 @@ def userprofile(request):
     if 'curr_user' not in request.session:
         return redirect('/')
     user = User.objects.get(id=request.session['curr_user'])
-    all_cocktails = Recipe.objects.filter(posted_by_id=user.id)
-    context = {
-        'user':user,
-        'all_cocktails':all_cocktails
+    response = requests.get('https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a')
+    cocktails = Recipe.objects.filter(posted_by=user)
+    #print(response.json()['drinks'][0])
+    # for key in response.json()['drinks']:
+    #     print(key)
+
+    context= {
+        'user': user,
+        'cocktails': response.json()['drinks'][:6],
+        'created_cocktails': cocktails
+        
     }
     return render(request, "profilepage.html", context)
 
@@ -91,8 +106,8 @@ def cocktailprofile(request, recipe_id):
     cocktail = Recipe.objects.get(id=recipe_id)
 
     context= {
-        'user':user,
-        'cocktail':cocktail
+        'user': user,
+        'cocktail': cocktail
     }
     return render(request, "cocktailrecipe.html", context)
 

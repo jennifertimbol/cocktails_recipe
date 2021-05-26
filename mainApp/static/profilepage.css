@@ -1,6 +1,7 @@
 
 .container {
-    
+    width: auto;
+    height: auto;
 }
 
 .wrapper {
@@ -8,16 +9,10 @@
     height: auto;
 }
 
-.col {
-    text-align: right;
-}
-
-.main {
-    text-align: center;
-    /* vertical-align: top; */
-    width: auto;
-    height: 50px;
-    display: block;
+.navbar {
+    width: 200px;
+    display: inline-block;
+    vertical-align: top;
 }
 
 .sidebar {
@@ -29,6 +24,10 @@
     border-radius: 4px;
     display: inline-block;
     vertical-align: top;
+}
+
+.user {
+    display: inline-block;
 }
 
 ul {
@@ -43,34 +42,15 @@ ul {
     margin: 5px 0px;
     padding: 5px;
     display: inline-block;
-    
 }
-
 .new_cocktail {
     width: 950px;
     text-align: center;
 }
 
-.favorite_cocktails {
+.new_recipe {
+    display: block;
     text-align: center;
-}
-
-.recipe_duration {
-    width: 70px;
-    height: 30px;
-    border-radius: 15px;
-    margin: 10px;
-    background: lightgray;
-    text-align: center;
-    font-size: small;
-    display: inline-block;
-}
-
-.recipe_duration p {
-    padding: 5px;
-    display: inline-block;
-    text-align: center;
-    vertical-align: left;
 }
 
 .cocktail{
@@ -89,14 +69,15 @@ ul {
     vertical-align: top;
 }
 
-.row {
-    width: 150px;
-    height: 200px;
-    border: green solid 2px;
+.headline {
+    width: 950px;
+    height: auto;
+    text-align: center;
+    display: inline-block;
+    vertical-align: top;
 }
 
-.footer {
-    width: auto;
-    height: 100px;
-}
+.created_recipes {
+    border: black solid 1px;
 
+}
