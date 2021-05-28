@@ -32,7 +32,7 @@
     vertical-align: top;
     text-align: center;
     display: inline-block;
-    
+
 }
 
 .user {
@@ -79,6 +79,14 @@ ul {
 }
 
 .headline {
+    width: 950px;
+    height: auto;
+    text-align: center;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.favories {
     width: 950px;
     height: auto;
     text-align: center;

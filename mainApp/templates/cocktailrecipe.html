@@ -16,7 +16,7 @@
                 </div>
             </div>
             <nav>
-                <a href="/home">Home</a>
+                <a href="/">Home</a>
                 <a href="/profile">Profile</a>
                 <a href="#">Contact</a>
                 <a href="#">About</a>
@@ -34,6 +34,19 @@
             <p>{{cocktail.description}}</p>
             <h4>Instructions:</h4>
             <p>{{cocktail.instruction}}</p>
+            <div class="col-6 px-2">
+                <h3>Users Who Favorited this recipe</h3>
+                <ul>
+                    {% for favorited_by in cocktail.favorited_by.all %}
+                    <li>{{favorited_by.first_name}} {{favorited_by.last_name}}</li>
+                    {% endfor %}
+                </ul>
+                {% if user in cocktail.favorited_by.all %}
+                <a href="/unfavorite/{{cocktail.id}}" role="button" class="btn btn-danger">Remove From Favorites</a>
+                {% else %}
+                <a href="/favorite/{{cocktail.id}}" role="button" class="btn btn-warning">Add to Favorites</a>
+                {% endif %}
+            </div>
         <a href="/editrecipe/{{cocktail.id}}"><button type="button" class="btn btn-primary">Edit</button></a>
         <a href="/deletecocktail/{{cocktail.id}}"><button type="button" class="btn btn-primary">Delete</button></a>
         <a href="/">Home</a>    

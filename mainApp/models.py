@@ -66,6 +66,7 @@ class Recipe(models.Model):
     duration = models.IntegerField()
     description = models.TextField()
     instruction = models.TextField()
+    favorited_by = models.ManyToManyField(User, related_name="favorited_recipes")
     posted_by = models.ForeignKey(User, related_name="drinks", on_delete=models.CASCADE)
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
@@ -75,4 +76,4 @@ class Comment(models.Model):
     commented_by = models.ForeignKey(User, related_name="poster", on_delete=models.CASCADE)
     recipe_comments = models.ManyToManyField(Recipe, related_name="recipes")
     created_at = models.DateField(auto_now_add=True)
-    
+

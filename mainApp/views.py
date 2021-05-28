@@ -7,9 +7,9 @@ import requests
 import json
 
 def homepage(request):
-    if 'curr_user' not in request.session:
-        return redirect('/')
-    user = User.objects.get(id=request.session['curr_user'])
+    # if 'curr_user' not in request.session:
+    #     return redirect('/')
+    # user = User.objects.get(id=request.session['curr_user'])
     response = requests.get('https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a')
     all_cocktails = Recipe.objects.all()
     # print(response.json()['drinks'][0])
@@ -17,7 +17,7 @@ def homepage(request):
     #     print(key)
 
     context= {
-        'user': user,
+        # 'user': user,
         'cocktails': response.json()['drinks'][:9],
         'all_cocktails': all_cocktails,
     }
@@ -65,6 +65,8 @@ def userprofile(request):
     user = User.objects.get(id=request.session['curr_user'])
     response = requests.get('https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a')
     cocktails = Recipe.objects.filter(posted_by=user)
+    fav_cocktails = Recipe.objects.filter(favorited_by=user)
+    favorite = Recipe.objects.all()
     #print(response.json()['drinks'][0])
     # for key in response.json()['drinks']:
     #     print(key)
@@ -72,8 +74,9 @@ def userprofile(request):
     context= {
         'user': user,
         'cocktails': response.json()['drinks'][:6],
-        'created_cocktails': cocktails
-        
+        'created_cocktails': cocktails,
+        'favorite_cocktails': fav_cocktails,
+        'favorites': favorite,
     }
     return render(request, "profilepage.html", context)
 
@@ -104,10 +107,12 @@ def uploadrecipe(request):
 def cocktailprofile(request, recipe_id):
     user = User.objects.get(id=request.session['curr_user'])
     cocktail = Recipe.objects.get(id=recipe_id)
+    favorite = Recipe.objects.all()
 
     context= {
         'user': user,
-        'cocktail': cocktail
+        'cocktail': cocktail,
+        'favorited_by': favorite,
     }
     return render(request, "cocktailrecipe.html", context)
 
@@ -134,7 +139,7 @@ def editrecipe(request, recipe_id):
 
 def saveupdatedrecipe(request, recipe_id):
     if request.method == 'POST':
-        user = User.objects.get(id=request.session['curr_id'])
+        user = User.objects.get(id=request.session['curr_user'])
         curr_recipe = Recipe.objects.get(id=recipe_id)
         postedUpdatedRecipeForm = recipeForm(request.POST, instance=curr_recipe)
         if postedUpdatedRecipeForm.is_valid():
@@ -148,6 +153,20 @@ def saveupdatedrecipe(request, recipe_id):
         return render(request, 'editrecipe.html', context)
     return redirect(f'/cocktailrecipe/{curr_recipe.id}')
     
+def favorite(request, recipe_id):
+    user = User.objects.get(id=request.session['curr_user'])
+    recipe = Recipe.objects.get(id=recipe_id)
+    user.favorited_recipes.add(recipe)
+
+    return redirect(f'/cocktailrecipe/{recipe_id}')
+
+def unfavorite(request, recipe_id):
+    user = User.objects.get(id=request.session['curr_user'])
+    recipe = Recipe.objects.get(id=recipe_id)
+    user.favorited_recipes.remove(recipe)
+
+    return redirect(f'/cocktailrecipe/{recipe_id}')
+
 def logout(request):
     request.session.flush()
     return redirect('/')
