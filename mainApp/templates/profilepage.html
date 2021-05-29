@@ -40,6 +40,7 @@
                 <ul style="text-decoration: none;">
                     <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="/profile">Profile</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/search_drink">Categories</a></li>
                     <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
                 </ul>
@@ -77,11 +78,13 @@
                         <div class="cocktail">
                             <div class="cocktail_image">
                                 <img style="width: 300px; height: auto;" src="{{cocktail.strDrinkThumb}}" alt="Cocktail Image">
-                                <div class="recipe_duration">
-                                <h3>{{cocktail.strDrink}}</h3>
-                                </div>
+                                <!-- <div class="recipe_duration">
+                                    <p>{{ cocktail.strDuration }} mins</p>
+                                </div> -->
                             </div>
-                            <a href="/cocktailrecipe/{{cocktail.id}}"><button type="button" class="btn btn-primary">View Cocktail</button></a>
+                            <!-- <a href="/cocktailrecipe/{{cocktails.id}}"><button>Name: {{cocktail.strDrink}}</button></a> -->
+                            <h3>{{cocktail.strDrink}}</h3>
+                            <a href="/cocktailrecipe/{{cocktails.id}}"><button type="button" class="btn btn-primary">View Cocktail</button></a>
                         </div>
                         {% endfor %}
                     </div>

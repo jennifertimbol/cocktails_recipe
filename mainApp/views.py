@@ -180,3 +180,6 @@ def generate_api_recipe(request):
     }
     return render(request, 'homepage.html', context)
 
+def search_drink(request):
+    return render(request, 'search_drink.html')
+

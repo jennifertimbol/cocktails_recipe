@@ -77,14 +77,12 @@ ul {
     width: 300px;
     height: 350px;
     margin: 5px;
-    border: black solid 1px;
     display: inline-block;
 }
 
 .cocktail_image {
     width: 300px;
     height: 300px;
-    border: black solid 1px;
     text-align: left;
     vertical-align: top;
 }

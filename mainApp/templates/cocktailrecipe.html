@@ -23,7 +23,7 @@
             </nav>
             <h2>{{cocktail.cocktail_name}}</h2>
             <img src="{{cocktail.image.url}}" alt="Cocktail Image" width="300px">
-            <p>Uploaded by: {{user.first_name}} {{user.last_name}}</p>
+            <!-- <p>Uploaded by: {{user.first_name}} {{user.last_name}}</p> -->
             <h4>Ingredients:</h4>
             <p>{{cocktail.ingredients}}</p>
             <h4>Drink category:</h4>
@@ -46,7 +46,7 @@
                 {% else %}
                 <a href="/favorite/{{cocktail.id}}" role="button" class="btn btn-warning">Add to Favorites</a>
                 {% endif %}
-            </div>
+            </div><br>
         <a href="/editrecipe/{{cocktail.id}}"><button type="button" class="btn btn-primary">Edit</button></a>
         <a href="/deletecocktail/{{cocktail.id}}"><button type="button" class="btn btn-primary">Delete</button></a>
         <a href="/">Home</a>    

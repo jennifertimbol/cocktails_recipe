@@ -16,6 +16,7 @@ urlpatterns = [
     path("favorite/<int:recipe_id>", views.favorite),
     path("unfavorite/<int:recipe_id>", views.unfavorite),
     path('logout', views.logout),
-    path('generate_api_recipe', views.generate_api_recipe)
+    path('generate_api_recipe', views.generate_api_recipe),
+    path('search_drink', views.search_drink),
 ]
 
